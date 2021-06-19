@@ -1,3 +1,4 @@
+using AutoMapper;
 using listingApi.data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,7 +25,7 @@ namespace listingApi
 
             services.AddDbContext<DatabaseContaxt>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("sqlConnection")));
-
+            services.AddAutoMapper(typeof(Mapper));
             services.AddCors(q =>
             {
                 q.AddPolicy("policy", builder
