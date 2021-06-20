@@ -1,5 +1,7 @@
 using AutoMapper;
 using listingApi.data;
+using listingApi.Irepo;
+using listingApi.repo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -31,12 +33,13 @@ namespace listingApi
                 q.AddPolicy("policy", builder
                      => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
-
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "listingApi", Version = "v1" });
             });
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(o=>
+            o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
