@@ -27,12 +27,17 @@ namespace listingApi
 
             services.AddDbContext<DatabaseContaxt>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("sqlConnection")));
+
+            services.AddAuthentication();
+            services.ConfigureIdentity();
+
             services.AddAutoMapper(typeof(Mapper));
             services.AddCors(q =>
             {
                 q.AddPolicy("policy", builder
                      => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
+            
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddSwaggerGen(c =>
             {

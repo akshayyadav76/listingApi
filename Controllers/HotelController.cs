@@ -38,7 +38,7 @@ namespace HotelListing.Controllers
             return Ok(results);
         }
 
-        [HttpGet("{id:int}"]
+        [HttpGet("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetHotel(int id)

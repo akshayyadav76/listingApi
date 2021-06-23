@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using listingApi.data;
 
 namespace listingApi.Migrations
 {
     [DbContext(typeof(DatabaseContaxt))]
-    partial class DatabaseContaxtModelSnapshot : ModelSnapshot
+    [Migration("20210622075441_userIdentity")]
+    partial class userIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,22 +46,6 @@ namespace listingApi.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "d04f1d29-af7f-413b-b0e2-ed0b6dceb3ba",
-                            ConcurrencyStamp = "2c54928f-349a-422c-b9cb-581b89a2edcd",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        },
-                        new
-                        {
-                            Id = "3ce540d0-2bed-4476-b454-d1fec23534b4",
-                            ConcurrencyStamp = "a8b7ce58-05eb-40c5-8f9f-c89f359d6d19",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -257,24 +243,6 @@ namespace listingApi.Migrations
                     b.HasData(
                         new
                         {
-                            countryId = 5,
-                            Name = "Bhopal",
-                            ShortName = "BU"
-                        },
-                        new
-                        {
-                            countryId = 6,
-                            Name = "Indore",
-                            ShortName = "IN"
-                        },
-                        new
-                        {
-                            countryId = 7,
-                            Name = "Jabalpur mp",
-                            ShortName = "JA"
-                        },
-                        new
-                        {
                             countryId = 1,
                             Name = "bhopal",
                             ShortName = "bu"
@@ -325,30 +293,6 @@ namespace listingApi.Migrations
                     b.ToTable("hotels");
 
                     b.HasData(
-                        new
-                        {
-                            Id = 5,
-                            Address = "Negril",
-                            CountryId = 1,
-                            Name = "Sandals Resort and Spa",
-                            Rating = 4.5
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Address = "George Town",
-                            CountryId = 3,
-                            Name = "Comfort Suites",
-                            Rating = 4.2999999999999998
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Address = "Nassua",
-                            CountryId = 2,
-                            Name = "Grand Palldium",
-                            Rating = 4.0
-                        },
                         new
                         {
                             Id = 1,

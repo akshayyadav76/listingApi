@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using listingApi.Config.Entities;
+using listingApi.Configurations.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace listingApi.data
 {
-    public class DatabaseContaxt : DbContext
+    public class DatabaseContaxt : IdentityDbContext<ApiUser>
     {
 
         public DatabaseContaxt(DbContextOptions options) :base(options) { 
@@ -17,7 +20,10 @@ namespace listingApi.data
         public DbSet<Hotel> hotels { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder) {
-
+            base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new RoleConfig());
+            builder.ApplyConfiguration(new HotelConfig());
+            builder.ApplyConfiguration(new CountryConfig());
             builder.Entity<Country>().HasData(
                 new Country { 
                   countryId =1,
